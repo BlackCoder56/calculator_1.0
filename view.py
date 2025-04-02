@@ -19,9 +19,12 @@ position_right = (screen_width // 2) - (window_width // 2)
 # Set the window size and position
 root.geometry(f'{window_width}x{window_height}+{position_right}+{position_top}')
 
+# Disable resizing
+root.resizable(False, False)
 
+# Frame to hold ttk components
 frame = ttk.Frame(root)
 frame.grid(column=0, row=0)
 
-
+# Run the Tkinter event loop
 root.mainloop()
