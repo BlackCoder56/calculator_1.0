@@ -45,7 +45,7 @@ calculation_entry = ttk.Entry(frame, font=textsize,justify=RIGHT)
 calculation_entry.grid(column=0, row=1, columnspan=4, sticky=(N,S,E,W), pady=5, padx=3)
 
 # Buttons on row=2
-btn_ac = ttk.Button(frame, text="AC").grid(column=0, row=2, pady=3)
+btn_ac = ttk.Button(frame, text="AC").grid(column=0, row=2, pady=5)
 btn_c = ttk.Button(frame, text="C").grid(column=1, row=2, pady=5)
 btn_percent = ttk.Button(frame, text="%").grid(column=2, row=2, pady=5)
 btn_division = ttk.Button(frame, text="/").grid(column=3, row=2, pady=5)
