@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import font
 from tkinter import ttk
 from script import Calculations
+import tkinter as tk
 
 root = Tk()
 root.title("CALCULATOR 1.0")
@@ -22,6 +23,7 @@ def operaton():
         get_input = caltions.get()
         computed = eval(get_input)
         caltions.set(computed)
+        historyList.insert(tk.END, computed)
     except ValueError:
         pass
 
@@ -42,7 +44,6 @@ def show_value_on_entry(new_value):
     current_value = str(caltions.get())
     new_value = str(new_value)
     caltions.set(current_value + new_value)
-
 
 def btn9():
     show_value_on_entry(9)
@@ -124,7 +125,7 @@ frame.pack_propagate(False)
 frame.grid(column=0, row=0, padx=2, pady=10, sticky=(N,E,S,W))
 
 # Listbox to display history calculations
-listvalue = []
+listvalue = [1,2,3]
 lname = StringVar(value=listvalue)
 historyList = Listbox(frame, listvariable=lname, bd=2, relief="solid", highlightbackground="red", height=5, width=50)
 historyList.grid(column=0, row=0, columnspan=4, sticky=(N,S,E,W))
