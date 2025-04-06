@@ -7,27 +7,14 @@ import tkinter as tk
 root = Tk()
 root.title("CALCULATOR 1.0")
 
-
 def operaton():
     try:
-        # get_input = caltions.get()
-        # # get_values = 
-        # if '+' in get_input:
-        #     get_values = get_input.split('+')
-        #     num1 = float(get_values[0])
-        #     num2 = float(get_values[1])
-        #     # math operation
-        #     symbol = '+'
-        #     answer = num1 + num2
-        #     caltions.set(answer)
         get_input = caltions.get()
         computed = eval(get_input)
         caltions.set(computed)
-        historyList.insert(tk.END, computed)
+        historyList.insert(tk.END, f"{get_input} = {computed}")
     except ValueError:
         pass
-
-
 
 def delete():
     try:
@@ -39,11 +26,17 @@ def delete():
     except IndexError:
         pass
 
-
 def show_value_on_entry(new_value):
     current_value = str(caltions.get())
     new_value = str(new_value)
     caltions.set(current_value + new_value)
+
+def clear():
+    caltions.set("")
+
+def clear_all():
+    # historyList
+    caltions.set("")
 
 def btn9():
     show_value_on_entry(9)
@@ -94,8 +87,6 @@ def btnMultiply():
     if caltions.get()[-1] != '*':
         show_value_on_entry('*')
 
-
-
 # Get the screen width and height
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
@@ -124,10 +115,7 @@ frame.pack_propagate(False)
 # frame.pack()
 frame.grid(column=0, row=0, padx=2, pady=10, sticky=(N,E,S,W))
 
-# Listbox to display history calculations
-listvalue = [1,2,3]
-lname = StringVar(value=listvalue)
-historyList = Listbox(frame, listvariable=lname, bd=2, relief="solid", highlightbackground="red", height=5, width=50)
+historyList = Listbox(frame, bd=2, relief="solid", highlightbackground="red", height=5, width=50)
 historyList.grid(column=0, row=0, columnspan=4, sticky=(N,S,E,W))
 
 caltions = StringVar()
@@ -138,7 +126,7 @@ calculation_entry.grid(column=0, row=1, columnspan=4, sticky=(N,S,E,W), pady=5, 
 
 # Buttons on row=2
 btn_ac = ttk.Button(frame, text="AC").grid(column=0, row=2, pady=5)
-btn_c = ttk.Button(frame, text="C").grid(column=1, row=2, pady=5)
+btn_c = ttk.Button(frame, text="C", command=clear).grid(column=1, row=2, pady=5)
 btn_percent = ttk.Button(frame, text="%").grid(column=2, row=2, pady=5)
 btn_division = ttk.Button(frame, text="/", command=btnDivision).grid(column=3, row=2, pady=5)
 
@@ -167,7 +155,7 @@ btn_del = ttk.Button(frame, text="<=", command=delete).grid(column=2, row=6, pad
 btn_equals = ttk.Button(frame, text="=", command=operaton).grid(column=3, row=6, pady=5)
 
 # Colorize alternating lines of the listbox
-for i in range(0, len(listvalue),2):
-    historyList.itemconfigure(i, background='#f0f0ff')
+# for i in range(0, len(listvalue),2):
+#     historyList.itemconfigure(i, background='#f0f0ff')
 # Run the Tkinter event loop
 root.mainloop()
